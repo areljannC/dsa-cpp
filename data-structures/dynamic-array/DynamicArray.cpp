@@ -29,7 +29,7 @@ private:
 
 public:
   uint size() { return this->_size; }
-  uint empty() { return this->_size == 0; }
+  bool empty() { return this->_size == 0; }
 
   DynamicArray() {
     this->_arrayPtr = new int[0];
