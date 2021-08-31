@@ -3,17 +3,18 @@
 
   This singly-linked list will only cover `int` data types.
 
-  --- Time Complexities ---
-  | Append at head    | O(1)
-  | Append at tail    | O(1)
-  | Insert at index i | O(n)
-  | Delete at head    | O(1)
-  | Delete at tail    | O(1)
-  | Delete at index i | O(n)
-  | Search            | O(n)
-  | Access head       | O(1)
-  | Access tail       | O(1)
-  | Access index i    | O(n)
+  ---- Time Complexities  ----
+  | Append at head    | O(1) |
+  | Append at tail    | O(1) |
+  | Insert at index i | O(n) |
+  | Delete at head    | O(1) |
+  | Delete at tail    | O(1) |
+  | Delete at index i | O(n) |
+  | Search            | O(n) |
+  | Access head       | O(1) |
+  | Access tail       | O(1) |
+  | Access index i    | O(n) |
+  ----------------------------
 */
 
 #include <iostream>
