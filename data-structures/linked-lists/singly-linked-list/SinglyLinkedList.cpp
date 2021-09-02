@@ -119,7 +119,7 @@ public:
     else if (index == this->_size - 1) this->removeTail();
     else {
       auto *traversalPtr = this->_headPtr;
-      int i = 0;
+      uint i = 0;
       while (i+1 != index) {
         traversalPtr = traversalPtr->nextPtr;
         i++;
@@ -144,7 +144,7 @@ public:
   int at(uint index) {
     if (this->_isIndexOutOfBounds(index)) throw std::out_of_range("Index is out of bounds.");
     auto *traversalPtr = this->_headPtr;
-    int i = 0;
+    uint i = 0;
     while (i != index) {
       traversalPtr = traversalPtr->nextPtr;
       i++;
