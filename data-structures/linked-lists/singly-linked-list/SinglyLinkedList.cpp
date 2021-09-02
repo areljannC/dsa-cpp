@@ -143,6 +143,8 @@ public:
 
   int at(uint index) {
     if (this->_isIndexOutOfBounds(index)) throw std::out_of_range("Index is out of bounds.");
+    if (index == 0) return this->atHead();
+    if (index == this->_size - 1) return this->atTail();
     auto *traversalPtr = this->_headPtr;
     uint i = 0;
     while (i != index) {
