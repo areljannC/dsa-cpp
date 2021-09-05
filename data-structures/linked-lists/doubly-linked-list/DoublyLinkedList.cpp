@@ -13,7 +13,7 @@
   | Search            | O(n) |
   | Access head       | O(1) |
   | Access tail       | O(1) |
-  / Access index i    | O(n) |
+  | Access index i    | O(n) |
   ----------------------------
 */
 
@@ -49,7 +49,7 @@ private:
 
 public:
   uint size() { return this->_size; }
-  uint empty() { return this->_size == 0; }
+  bool empty() { return this->_size == 0; }
 
   DoublyLinkedList() {
     this->_headPtr = nullptr;
