@@ -73,7 +73,7 @@ public:
     if (this->_capacity == 0) this->_capacity = 1;
     else this->_capacity *= 2;
 
-    auto tempArrayPtr = new int[this->_capacity];
+    auto *tempArrayPtr = new int[this->_capacity];
     for (uint i = 0; i < this->_size; i++) tempArrayPtr[i] = this->_arrayPtr[i];
 
     delete[] this->_arrayPtr;
@@ -84,7 +84,7 @@ public:
     this->_capacity /= 2;
     if (this->_capacity < this->_initialCapacity) this->_capacity = this->_initialCapacity;
 
-    auto tempArrayPtr = new int[this->_capacity];
+    auto *tempArrayPtr = new int[this->_capacity];
     for (uint i = 0; i < this->_size; i++) tempArrayPtr[i] = this->_arrayPtr[i];
 
     delete[] this->_arrayPtr;
