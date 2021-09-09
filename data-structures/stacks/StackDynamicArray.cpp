@@ -18,7 +18,6 @@ class StackDynamicArray {
 private:
   typedef unsigned int uint;
   int *_arrayPtr;
-  int _topIndex;
   uint _size;
   uint _capacity;
   uint _initialCapacity;
@@ -32,7 +31,6 @@ public:
 
   StackDynamicArray() {
     this->_arrayPtr = new int[0];
-    this->_topIndex = -1;
     this->_size = 0;
     this->_capacity = 0;
     this->_initialCapacity = 0;
@@ -40,7 +38,6 @@ public:
 
   StackDynamicArray(uint capacity) {
     this->_arrayPtr = new int[capacity];
-    this->_topIndex = -1;
     this->_size = 0;
     this->_capacity = capacity;
     this->_initialCapacity = capacity;
