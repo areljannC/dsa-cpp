@@ -23,7 +23,6 @@ private:
   uint _initialCapacity;
   bool _shouldIncreaseCapacity() { return this->_size <= this->_capacity && this->_size + 1 > this->_capacity; }
   bool _shouldDecreaseCapacity() { return this->_size - 1 == this->_capacity / 2; }
-  bool _isIndexOutOfBounds(int index) { return index < 0 || index >= this->_size; }
 
 public:
   uint size() { return this->_size; }

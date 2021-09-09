@@ -21,7 +21,6 @@ private:
   uint _size;
   uint _capacity;
   bool _isFull() { return this->_size == this->_capacity; }
-  bool _isIndexOutOfBounds(int index) { return index < 0 || index >= this->_size; }
 
 public:
   uint size() { return this->_size; }
