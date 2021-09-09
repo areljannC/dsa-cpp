@@ -33,7 +33,7 @@ public:
   }
 };
 
-class StackLinkedList {
+class StackDoublyLinkedList {
 private:
   typedef unsigned int uint;
   Node *_headPtr;
@@ -44,7 +44,7 @@ public:
   uint size() { return this->_size; }
   bool empty() { return this->_size == 0; }
 
-  StackLinkedList() {
+  StackDoublyLinkedList() {
     this->_headPtr = nullptr;
     this->_tailPtr = nullptr;
     this->_size = 0;
@@ -100,7 +100,7 @@ public:
 };
 
 int main() {
-  StackLinkedList stack;
+  StackDoublyLinkedList stack;
 
   stack.push(1);
   assert(stack.top() == 1);

@@ -14,7 +14,7 @@
 #include <iostream>
 #include <cassert>
 
-class StackArray {
+class StackDynamicArray {
 private:
   typedef unsigned int uint;
   int *_arrayPtr;
@@ -30,7 +30,7 @@ public:
   uint size() { return this->_size; }
   bool empty() { return this->_size == 0; }
 
-  StackArray() {
+  StackDynamicArray() {
     this->_arrayPtr = new int[0];
     this->_topIndex = -1;
     this->_size = 0;
@@ -38,7 +38,7 @@ public:
     this->_initialCapacity = 0;
   }
 
-  StackArray(uint capacity) {
+  StackDynamicArray(uint capacity) {
     this->_arrayPtr = new int[capacity];
     this->_topIndex = -1;
     this->_size = 0;
@@ -99,7 +99,7 @@ public:
 };
 
 int main() {
-  StackArray stack(4);
+  StackDynamicArray stack(4);
 
   stack.push(1);
   stack.push(2);
