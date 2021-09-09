@@ -64,7 +64,7 @@ public:
   }
 
   void pop() {
-    if (this->empty()) throw std::runtime_error("List is empty.");
+    if (this->empty()) throw std::runtime_error("Stack is empty.");
     auto *tempNodePtr = this->_tailPtr;
     if (this->_tailPtr->previousPtr == nullptr) {
       this->_tailPtr = nullptr;
@@ -78,12 +78,12 @@ public:
   }
 
   int top() {
-    if (this->empty()) throw std::runtime_error("List is empty.");
+    if (this->empty()) throw std::runtime_error("Stack is empty.");
     return this->_tailPtr->data;
   }
 
   void toString() {
-    if (this->empty()) std::cout << "List is empty." << std::endl;
+    if (this->empty()) std::cout << "Stack is empty." << std::endl;
     else {
       auto *traversalPtr = this->_headPtr;
       while (traversalPtr != nullptr) {

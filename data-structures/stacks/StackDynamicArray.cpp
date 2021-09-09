@@ -49,13 +49,13 @@ public:
   }
 
   void pop() {
-    if (this->empty()) throw std::runtime_error("List is empty.");
+    if (this->empty()) throw std::runtime_error("Stack is empty.");
     if (this->_shouldDecreaseCapacity()) this->decreaseCapacity();
     this->_arrayPtr[this->_size--] = 0;
   }
 
   int top() {
-    if (this->empty()) throw std::runtime_error("List is empty.");
+    if (this->empty()) throw std::runtime_error("Stack is empty.");
     return this->_arrayPtr[this->_size - 1];
   }
 
