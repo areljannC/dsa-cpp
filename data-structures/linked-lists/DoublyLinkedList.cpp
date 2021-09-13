@@ -20,26 +20,30 @@
 #include <iostream>
 #include <cassert>
 
-class Node {
+class Node
+{
 public:
   int data;
   Node *nextPtr;
   Node *previousPtr;
 
-  Node(int data) {
+  Node(int data)
+  {
     this->data = data;
     this->nextPtr = nullptr;
     this->previousPtr = nullptr;
   }
 
-  Node(int data, Node *nextPtr, Node *previousPtr) {
+  Node(int data, Node *nextPtr, Node *previousPtr)
+  {
     this->data = data;
     this->nextPtr = nextPtr;
     this->previousPtr = previousPtr;
   }
 };
 
-class DoublyLinkedList {
+class DoublyLinkedList
+{
 private:
   typedef unsigned int uint;
   Node *_headPtr;
@@ -51,18 +55,23 @@ public:
   uint size() { return this->_size; }
   bool empty() { return this->_size == 0; }
 
-  DoublyLinkedList() {
+  DoublyLinkedList()
+  {
     this->_headPtr = nullptr;
     this->_tailPtr = nullptr;
     this->_size = 0;
   }
 
-  void append(int data) {
+  void append(int data)
+  {
     auto *newNodePtr = new Node(data);
-    if (this->empty()) {
+    if (this->empty())
+    {
       this->_headPtr = newNodePtr;
       this->_tailPtr = newNodePtr;
-    } else {
+    }
+    else
+    {
       this->_tailPtr->nextPtr = newNodePtr;
       newNodePtr->previousPtr = this->_tailPtr;
       this->_tailPtr = newNodePtr;
@@ -70,12 +79,16 @@ public:
     this->_size++;
   }
 
-  void prepend(int data) {
+  void prepend(int data)
+  {
     auto *newNodePtr = new Node(data);
-    if (this->empty()) {
+    if (this->empty())
+    {
       this->_headPtr = newNodePtr;
       this->_tailPtr = newNodePtr;
-    } else {
+    }
+    else
+    {
       this->_headPtr->previousPtr = newNodePtr;
       newNodePtr->nextPtr = this->_headPtr;
       this->_headPtr = newNodePtr;
@@ -83,15 +96,18 @@ public:
     this->_size++;
   }
 
-  void insertAt(uint index, int data) {
+  void insertAt(uint index, int data)
+  {
     if (this->_isIndexOutOfBounds(index)) throw std::out_of_range("Index is out of bounds.");
     else if (index == 0) this->prepend(data);
     else if (index == this->_size - 1) this->append(data);
-    else {
+    else
+    {
       auto *newNodePtr = new Node(data);
       auto *traversalPtr = this->_headPtr;
       uint i = 0;
-      while (i != index) {
+      while (i != index)
+      {
         traversalPtr = traversalPtr->nextPtr;
         i++;
       }
@@ -103,7 +119,8 @@ public:
     }
   }
 
-  void removeHead() {
+  void removeHead()
+  {
     if (this->empty()) throw std::runtime_error("List is empty.");
     auto *tempNodePtr = this->_headPtr;
     this->_headPtr = this->_headPtr->nextPtr;
@@ -112,7 +129,8 @@ public:
     this->_size--;
   }
 
-  void removeTail() {
+  void removeTail()
+  {
     if (this->empty()) throw std::runtime_error("List is empty.");
     auto *tempNodePtr = this->_tailPtr;
     this->_tailPtr = this->_tailPtr->previousPtr;
@@ -121,14 +139,17 @@ public:
     this->_size--;
   }
 
-  void removeAt(uint index) { 
+  void removeAt(uint index)
+  {
     if (this->empty()) throw std::runtime_error("List is empty.");
     else if (index == 0) this->removeHead();
     else if (index == this->_size - 1) this->removeTail();
-    else {
+    else
+    {
       auto *traversalPtr = this->_headPtr;
       uint i = 0;
-      while (i != index) {
+      while (i != index)
+      {
         traversalPtr = traversalPtr->nextPtr;
         i++;
       }
@@ -139,32 +160,38 @@ public:
     }
   }
 
-  int atHead() {
+  int atHead()
+  {
     if (this->empty()) throw std::runtime_error("List is empty.");
     return this->_headPtr->data;
   }
 
-  int atTail() {
+  int atTail()
+  {
     if (this->empty()) throw std::runtime_error("List is empty.");
     return this->_tailPtr->data;
   }
 
-  int at(uint index) {
+  int at(uint index)
+  {
     if (this->_isIndexOutOfBounds(index)) throw std::out_of_range("Index is out of bounds.");
     else if (index == 0) return this->atHead();
     else if (index == this->_size - 1) return this->atTail();
     auto *traversalPtr = this->_headPtr;
     uint i = 0;
-    while (i != index) {
+    while (i != index)
+    {
       traversalPtr = traversalPtr->nextPtr;
       i++;
     }
     return traversalPtr->data;
   }
 
-  void toString() {
+  void toString()
+  {
     auto *traversalPtr = this->_headPtr;
-    while (traversalPtr->nextPtr != nullptr) {
+    while (traversalPtr->nextPtr != nullptr)
+    {
       std::cout << traversalPtr->data << " <-> ";
       traversalPtr = traversalPtr->nextPtr;
     }
@@ -175,7 +202,8 @@ public:
   }
 };
 
-int main() {
+int main()
+{
   DoublyLinkedList list;
 
   list.append(10);

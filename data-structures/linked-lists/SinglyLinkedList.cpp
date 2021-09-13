@@ -20,23 +20,27 @@
 #include <iostream>
 #include <cassert>
 
-class Node {
+class Node
+{
 public:
   int data;
   Node *nextPtr;
 
-  Node(int data) {
+  Node(int data)
+  {
     this->data = data;
     this->nextPtr = nullptr;
   }
 
-  Node(int data, Node *nextPtr) {
+  Node(int data, Node *nextPtr)
+  {
     this->data = data;
     this->nextPtr = nextPtr;
   }
 };
 
-class SinglyLinkedList {
+class SinglyLinkedList
+{
 private:
   typedef unsigned int uint;
   Node *_headPtr;
@@ -48,44 +52,56 @@ public:
   uint size() { return this->_size; }
   bool empty() { return this->_size == 0; }
 
-  SinglyLinkedList() {
+  SinglyLinkedList()
+  {
     this->_headPtr = nullptr;
     this->_tailPtr = nullptr;
     this->_size = 0;
   }
 
-  void append(int data) {
+  void append(int data)
+  {
     auto *newNodePtr = new Node(data);
-    if (this->_size == 0) {
+    if (this->_size == 0)
+    {
       this->_headPtr = newNodePtr;
       this->_tailPtr = newNodePtr;
-    } else {
+    }
+    else
+    {
       this->_tailPtr->nextPtr = newNodePtr;
       this->_tailPtr = newNodePtr;
     }
     this->_size++;
   }
 
-  void prepend(int data) {
+  void prepend(int data)
+  {
     auto *newNodePtr = new Node(data);
-    if (this->_size == 0) {
+    if (this->_size == 0)
+    {
       this->_headPtr = newNodePtr;
       this->_tailPtr = newNodePtr;
-    } else {
+    }
+    else
+    {
       newNodePtr->nextPtr = this->_headPtr;
       this->_headPtr = newNodePtr;
     }
     this->_size++;
   }
-  
-  void insertAt(uint index, int data) {
+
+  void insertAt(uint index, int data)
+  {
     if (this->_isIndexOutOfBounds(index)) throw std::out_of_range("Index is out of bounds.");
     if (index == 0) this->prepend(data);
-    else {
+    else
+    {
       auto *newNodePtr = new Node(data);
       auto *traversalPtr = this->_headPtr;
       uint i = 0;
-      while (i+1 != index) {
+      while (i + 1 != index)
+      {
         traversalPtr = traversalPtr->nextPtr;
         i++;
       }
@@ -95,7 +111,8 @@ public:
     }
   }
 
-  void removeHead() {
+  void removeHead()
+  {
     if (this->_size == 0) throw std::runtime_error("List is empty.");
     auto *tempNodePtr = this->_headPtr->nextPtr;
     delete this->_headPtr;
@@ -103,24 +120,30 @@ public:
     this->_size--;
   }
 
-  void removeTail() {
-    if (this->_size == 0) throw std::runtime_error("List is empty.");
+  void removeTail()
+  {
+    if (this->_size == 0)
+      throw std::runtime_error("List is empty.");
     auto *traversalPtr = this->_headPtr;
-    while (traversalPtr->nextPtr != this->_tailPtr) traversalPtr = traversalPtr->nextPtr;
+    while (traversalPtr->nextPtr != this->_tailPtr)
+      traversalPtr = traversalPtr->nextPtr;
     delete this->_tailPtr;
     this->_tailPtr = traversalPtr;
     this->_tailPtr->nextPtr = nullptr;
     this->_size--;
   }
 
-  void removeAt(int index) {
+  void removeAt(int index)
+  {
     if (this->_isIndexOutOfBounds(index)) throw std::out_of_range("Index is out of bounds.");
     else if (index == 0) this->removeHead();
     else if (index == this->_size - 1) this->removeTail();
-    else {
+    else
+    {
       auto *traversalPtr = this->_headPtr;
       uint i = 0;
-      while (i+1 != index) {
+      while (i + 1 != index)
+      {
         traversalPtr = traversalPtr->nextPtr;
         i++;
       }
@@ -131,32 +154,38 @@ public:
     }
   }
 
-  int atHead() {
+  int atHead()
+  {
     if (this->_size == 0) throw std::runtime_error("List is empty.");
     return this->_headPtr->data;
   }
 
-  int atTail() {
+  int atTail()
+  {
     if (this->_size == 0) throw std::runtime_error("List is empty.");
     return this->_tailPtr->data;
   }
 
-  int at(uint index) {
+  int at(uint index)
+  {
     if (this->_isIndexOutOfBounds(index)) throw std::out_of_range("Index is out of bounds.");
     if (index == 0) return this->atHead();
     if (index == this->_size - 1) return this->atTail();
     auto *traversalPtr = this->_headPtr;
     uint i = 0;
-    while (i != index) {
+    while (i != index)
+    {
       traversalPtr = traversalPtr->nextPtr;
       i++;
     }
     return traversalPtr->data;
   }
 
-  void toString() {
+  void toString()
+  {
     auto *traversalPtr = this->_headPtr;
-    while (traversalPtr->nextPtr != nullptr) {
+    while (traversalPtr->nextPtr != nullptr)
+    {
       std::cout << traversalPtr->data << " -> ";
       traversalPtr = traversalPtr->nextPtr;
     }
@@ -167,7 +196,8 @@ public:
   }
 };
 
-int main() {
+int main()
+{
   SinglyLinkedList list;
 
   list.append(0);
