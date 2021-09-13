@@ -14,7 +14,8 @@
 #include <iostream>
 #include <cassert>
 
-class StackDynamicArray {
+class StackDynamicArray
+{
 private:
   typedef unsigned int uint;
   int *_arrayPtr;
@@ -28,37 +29,57 @@ public:
   uint size() { return this->_size; }
   bool empty() { return this->_size == 0; }
 
-  StackDynamicArray() {
+  StackDynamicArray()
+  {
     this->_arrayPtr = new int[0];
     this->_size = 0;
     this->_capacity = 0;
     this->_initialCapacity = 0;
   }
 
-  StackDynamicArray(uint capacity) {
+  StackDynamicArray(uint capacity)
+  {
     this->_arrayPtr = new int[capacity];
     this->_size = 0;
     this->_capacity = capacity;
     this->_initialCapacity = capacity;
   }
 
-  void push(int element) {
+  void push(int element)
+  {
     if (this->_shouldIncreaseCapacity()) this->increaseCapacity();
     this->_arrayPtr[this->_size++] = element;
   }
 
-  void pop() {
+  int pop()
+  {
     if (this->empty()) throw std::runtime_error("Stack is empty.");
     if (this->_shouldDecreaseCapacity()) this->decreaseCapacity();
-    this->_arrayPtr[this->_size--] = 0;
+    return this->_arrayPtr[this->_size-- - 1];
   }
 
-  int top() {
+  int top()
+  {
     if (this->empty()) throw std::runtime_error("Stack is empty.");
     return this->_arrayPtr[this->_size - 1];
   }
 
-  void increaseCapacity() {
+  bool contains(int element)
+  {
+    if (this->empty()) throw std::runtime_error("Stack is empty.");
+    for (uint i = 0; i < this->_size; i++) if (this->_arrayPtr[i] == element) return true;
+    return false;
+  }
+
+  int indexOf(int element)
+  {
+    if (this->empty()) throw std::runtime_error("Stack is empty.");
+    for (uint i = 0; i < this->_size; i++) if (this->_arrayPtr[i] == element) return i;
+    return -1;
+  }
+
+  void increaseCapacity()
+  {
     if (this->_capacity == 0) this->_capacity = 1;
     else this->_capacity *= 2;
 
@@ -69,7 +90,8 @@ public:
     this->_arrayPtr = tempArrayPtr;
   }
 
-  void decreaseCapacity() {
+  void decreaseCapacity()
+  {
     this->_capacity /= 2;
     if (this->_capacity < this->_initialCapacity) this->_capacity = this->_initialCapacity;
 
@@ -80,13 +102,14 @@ public:
     this->_arrayPtr = tempArrayPtr;
   }
 
-  void toString() {
-    for (uint i = 0; i < this->_size; i++) {
+  void toString()
+  {
+    for (uint i = 0; i < this->_size; i++)
+    {
       if (i == this->_size - 1) std::cout << this->_arrayPtr[i];
       else std::cout << this->_arrayPtr[i] << " -> ";
     }
     std::cout << std::endl;
-
     std::cout << "Top: " << this->top() << std::endl;
     std::cout << "Size: " << this->_size << std::endl;
     std::cout << "Capacity: " << this->_capacity << std::endl;
@@ -94,7 +117,8 @@ public:
   }
 };
 
-int main() {
+int main()
+{
   StackDynamicArray stack(4);
 
   stack.push(1);
@@ -109,12 +133,19 @@ int main() {
   assert(stack.top() == 4);
   assert(stack.size() == 4);
 
-  stack.push(5);
-  stack.pop();
-  stack.pop();
+  assert(stack.pop() == 4);
+  assert(stack.pop() == 3);
 
-  assert(stack.top() == 3);
-  assert(stack.size() == 3);
+  assert(stack.top() == 2);
+  assert(stack.size() == 2);
+
+  assert(stack.contains(1) == true);
+  assert(stack.contains(2) == true);
+  assert(stack.contains(3) == false);
+
+  assert(stack.indexOf(1) == 0);
+  assert(stack.indexOf(2) == 1);
+  assert(stack.indexOf(3) == -1);
 
   stack.toString();
 
